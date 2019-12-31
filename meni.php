@@ -1,6 +1,4 @@
 // Custom dropdown 
-
-
 <?php
 
 /* @var $this \yii\web\View */
@@ -44,10 +42,11 @@ AppAsset::register($this);
     {
     }else{
         // for Loged In Users
+        /*
          $this->beginContent('@app/views/layouts/nav_log.php');  
             // You may need to put some content here  
          $this->endContent(); 
-           
+          */ 
 }
         ?> <?php 
         NavBar::begin([
@@ -57,7 +56,8 @@ AppAsset::register($this);
                 'class' => 'navbar-inverse navbar-fixed-top',
             ],
         ]);
-
+        if(!Yii::$app->user->isGuest)
+        {
         ?>
         <ul class="nav navbar-nav">
         <li class="active"><a href="index.php?r=site/index">Home</a></li>
@@ -75,10 +75,20 @@ AppAsset::register($this);
             <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown 2<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li> <li role="separator" class="divider"></li>
+            <li><a href="#">Another action</a></li> <li role="separator" class="divider"></li>
+            <li><a href="#">Something else here</a></li> <li role="separator" class="divider"></li>
+            <li class="dropdown-header">Nav header</li> <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>  <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
       </ul>
-
-       
          <?php
+        }
 
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav navbar-right'],
